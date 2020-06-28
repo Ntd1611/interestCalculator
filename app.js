@@ -9,12 +9,17 @@ const totalInterest = document.querySelector("#total-interest");
 // Listen for submit
 document
   .querySelector("#interest-form")
-  .addEventListener("submit", calculateResult);
+  .addEventListener("submit", function (e) {
+    // Hide loader
+    document.querySelector(".loading").style.display = "none";
+    // Show loader
+    e.preventDefault();
+    document.querySelector(".loading").style.display = "block";
+    setTimeout(calculateResult, 1000);
+  });
 
 // Functions
 function calculateResult(e) {
-  e.preventDefault();
-
   const principal = parseFloat(amount.value);
   const calculatedInterest = parseFloat(interest.value) / 100 / 12;
   const calculatedPayments = parseFloat(years.value) * 12;
@@ -27,11 +32,19 @@ function calculateResult(e) {
     monthlyPayment.value = monthly.toFixed(2);
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
     totalInterest.value = (monthly * calculatedPayments - principal).toFixed(2);
+    // Show results
+    document.querySelector(".results").style.display = "block";
+    // Hide loader
+    document.querySelector(".loading").style.display = "none";
   } else {
     showError("Please check your number");
   }
 
   function showError(error) {
+    // Hide results
+    document.querySelector(".results").style.display = "none";
+    // Hide loader
+    document.querySelector(".loading").style.display = "none";
     // Create a div
     const errorDiv = document.createElement("div");
     // Get elements

@@ -7,3 +7,8 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+.loading,
+.results {
+  display: none;
+}
