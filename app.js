@@ -37,7 +37,7 @@ function calculateResult(e) {
     // Hide loader
     document.querySelector(".loading").style.display = "none";
   } else {
-    showError("Please check your number");
+    showError("Please re-check your inputs");
   }
 
   function showError(error) {
